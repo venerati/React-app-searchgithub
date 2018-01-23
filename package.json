@@ -1,6 +1,6 @@
 {
-  "name": "react-twitter-app",
-  "version": "0.1.0",
+  "name": "react-github-searcher",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "react": "^16.2.0",
