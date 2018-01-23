@@ -7,7 +7,8 @@ class Getgithub extends Component {
   constructor(props){
       super(props);
       this.state = {
-          username: this.props.username
+          username: this.props.username,
+          change:this.props.change
       }
   }
 
@@ -25,11 +26,20 @@ class Getgithub extends Component {
         })
   }
 
+  //this method looks at the state and watches for a change. when there is a change it will run its contents and the if statement will see if the local version of 'change' is the same as the parent's version. If there is a diff it will run a search. It then changes the local value to the same as the parent value.
+  componentDidUpdate(){
+    console.log('the componentDidUdate method fired.')
+    if (this.state.change !== this.props.change) {
+        this.searchGithub();
+        this.setState({change: this.props.change})
+        console.log('The state.change and props.change didnt match and the local state.change has been updated to reflect the app state.change value')
+    }
+  }
+
   //When the component is mounted to the dom then it will fire.
   componentDidMount() {
     this.searchGithub()
   }
-
 
   render() {
     if(!this.state.githubData) return <p>loading...</p>

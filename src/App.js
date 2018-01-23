@@ -9,8 +9,11 @@ class App extends Component {
       super(props);
       //this sets react to allow you to reference 'handleusernameinput' with 'this.'
       this.handleUsernameInput = this.handleUsernameInput.bind(this);
+      this.handleEnterKeyonInput = this.handleEnterKeyonInput.bind(this);
       this.state = {
-        username: 'venerati'
+        username: 'venerati',
+        //this prop will flip every time the user presses enter on the input field and trigger the api call
+        change: false
       }
   }
   //this method takes the username argument and sets it to the state.
@@ -18,6 +21,18 @@ class App extends Component {
     this.setState({username})
     console.log('handleUsernameInput has fired ' + this.state.username)
     // alert('parent state is ' + this.state.username);
+  }
+
+  //this method is called when the user submits the username via the enter key. it is passed to the 'inputusername' comp via props.
+  handleEnterKeyonInput() {
+    
+    if(this.state.change === true){
+      console.log('change set to false')
+      this.setState({change: false})
+    } else {
+      console.log('change set to true')
+      this.setState({change: true})
+    }
   }
 
   render() {
@@ -28,8 +43,8 @@ class App extends Component {
           <h1 className="App-title">Github Searcher</h1>
         </header>
         <p>Type in the username you wish to search</p>
-        <InputUsername value={username} onUsernameInput={this.handleUsernameInput}></InputUsername>
-        <Getgithub username={this.state.username}></Getgithub>
+        <InputUsername value={username} onUsernameInput={this.handleUsernameInput} onUserSubmit={this.handleEnterKeyonInput}></InputUsername>
+        <Getgithub username={this.state.username} change={this.state.change}></Getgithub>
       </div>
     );
   }
@@ -52,25 +67,23 @@ class InputUsername extends React.Component {
     // alert('handleinput sees ' + e.target.value);
   }
 
+  //this method fires when the user presses the enter key.
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log('handleSubmit has fired')
+    this.props.onUserSubmit();
+  }
+
   render () {
     const username = this.props.username;
     return (
-       <form>
-         <input type="text" value={username} onChangeCapture={this.handleInput} />
+       <form onSubmit={event=>{ this.handleSubmit(event) }}>
+         <input type="text" value={username} onSubmit={this.handlSubmit} onChangeCapture={this.handleInput} />
       </form> 
     )
   }
   
 }
 
-//create a component that handles taking in the search params from the user via an input field
-
-//create a component that creates a tweet display box
-
-//create a component that handles the get request / subscribes to the specified twitter user
-
-//create a component that takes the object returned by the twitter server and takes the last 5 tweets. and places them into a new var.
-
-//
 
 export default App;
