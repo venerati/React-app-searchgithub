@@ -67,7 +67,7 @@ class InputUsername extends React.Component {
     // alert('handleinput sees ' + e.target.value);
   }
 
-  //this method fires when the user presses the enter key.
+  //this method fires when the user presses the enter key and has the input field selected.
   handleSubmit(event) {
     event.preventDefault();
     console.log('handleSubmit has fired')
@@ -82,8 +82,23 @@ class InputUsername extends React.Component {
       </form> 
     )
   }
-  
 }
 
+//Things to look into.
+//1. user auth with tokens.
+  // look into the Auth0 jwt log in function.
+//2. session handling.
+//3. mock up payment processing.
+
+
+//order of operations
+// ** the app may require a reworking of the folder structure.
+// 1.set up routing in the application
+//    a.create log in page
+//    b.create the 'root' router page and set up links
+// 2.create authentication for the front end.
+//    a.install the npm package with the following code. 'npm install jwt-decode auth0-js --save'
+//    b.create a 'authservice.js' file and move the handlers into the file.
+// 3.create a nodejs server to be your API
 
 export default App;

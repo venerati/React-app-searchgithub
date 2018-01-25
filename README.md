@@ -1,5 +1,5 @@
 # Github Searcher
-* __summary__
+* __Summary__
     * This is a simple application that was used as an exercise while attempting to learn React.js from scratch. The app takes the user input of a username they would like to look up on github, returns the result, and displays the related information.
 
 * __Dependencies__
