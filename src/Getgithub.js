@@ -48,7 +48,7 @@ class Getgithub extends Component {
         <div>
             <button onClickCapture={()=> this.searchGithub()}>Search</button>
         </div>
-            <img src={this.state.githubData.avatar_url} height='100' ></img>
+            <img alt="Github user avatar" src={this.state.githubData.avatar_url} height='100' ></img>
             <h2>{this.state.githubData.name}</h2>
             <h3>Number of repos: {this.state.githubData.public_repos}</h3>
             <p>Followers: {this.state.githubData.followers}</p>
